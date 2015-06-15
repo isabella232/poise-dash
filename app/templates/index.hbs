@@ -44,4 +44,14 @@
   {{#dash-box service="github" status=project.githubStatus label=project.githubLabel href=project.githubHref}}
   {{/dash-box}}
 </div>
+{{else}}
+<div class="project row">
+  <div class="project-notfound col-xs-14">
+    {{#if controllers.application.filterString}}
+      No projects matching "{{controllers.application.filterString}}".
+    {{else}}
+      No projects found.
+    {{/if}}
+  </div>
+</div>
 {{/each}}
