@@ -23,8 +23,8 @@ export default Ember.Controller.extend({
     return moment(this.get('model.github.branch.commit.commit.committer.date')).fromNow();
   }.property('model.github.branch.commit.commit.committer.date'),
   commitHref: function() {
-    return 'https://github.com/' + this.get('model.id') + '/commit/' + this.get('model.commit');
-  }.property('model.id', 'model.commit'),
+    return 'https://github.com/' + this.get('model.id') + '/commit/' + this.get('commit');
+  }.property('model.id', 'commit'),
 
   travisLabel: function() {
     var n = this.get('model.travis.firstObject.number');
