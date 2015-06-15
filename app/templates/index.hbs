@@ -9,7 +9,9 @@
 {{#each controller as |project|}}
 <div class="project row">
   <div class="project-name col-md-4">
-    <span class="name-label">{{project.name}}</span>
+    <a href={{project.href}} target="_blank">
+      <span class="name-label">{{project.name}}</span>
+    </a>
     <span class="name-details">
       <a href={{project.commitHref}} target="_blank">
         <i class="fa fa-github"></i>

@@ -14,6 +14,9 @@ export default Ember.Controller.extend({
   name: function() {
     return this.get('model.id').split(/\//).get('lastObject');
   }.property('model.id'),
+  href: function() {
+    return 'https://github.com/' + this.get('model.id');
+  }.property('model.id'),
 
   commit: Ember.computed.alias('model.github.branch.commit.sha'),
   commitShort: function() {
