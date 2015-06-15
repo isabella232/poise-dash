@@ -1,0 +1,45 @@
+<div class="headers row">
+  <div class="header-name col-md-4">&nbsp;</div>
+  <div class="header-travis col-md-2">Travis CI</div>
+  <div class="header-codecov col-md-2">Coverage</div>
+  <div class="header-codeclimate col-md-2">Code Climate</div>
+  <div class="header-gemnasium col-md-2">Dependencies</div>
+  <div class="header-gemnasium col-md-2">GitHub</div>
+</div>
+{{#each controller as |project|}}
+<div class="project row">
+  <div class="project-name col-md-4">
+    <span class="name-label">{{project.name}}</span>
+    <span class="name-details">
+      <a href={{project.commitHref}} target="_blank">
+        <i class="fa fa-github"></i>
+        <span class="name-rev">{{project.commitShort}}</span>
+      </a>
+      <a href={{project.commitHref}} target="_blank">
+        <i class="fa fa-clock-o"></i>
+        <span class="name-age">{{project.commitRelative}}</span>
+      </a>
+    </span>
+  </div>
+  {{#dash-box service="travis" status=project.travisStatus label=project.travisLabel href=project.travisHref}}
+    {{#if project.model.travis.firstObject}}
+      {{graph-tristate data=project.travisData}}
+    {{/if}}
+  {{/dash-box}}
+  {{#dash-box service="codecov" status=project.codecovStatus label=project.codecovLabel href=project.codecovHref}}
+    {{!-- {{graph-sparkline data=project.codecov}} --}}
+  {{/dash-box}}
+  {{#dash-box service="codeclimate" status=project.codeclimateStatus label=project.codeclimateLabel href=project.codeclimateHref}}
+    {{#if project.model.codeclimate}}
+      {{graph-bar data=project.codeclimateData}}
+    {{/if}}
+  {{/dash-box}}
+  {{#dash-box service="gemnasium" status=project.gemnasiumStatus label=project.gemnasiumLabel href=project.gemnasiumHref}}
+    {{#if project.model.gemnasium}}
+      {{graph-bar data=project.gemnasiumData}}
+    {{/if}}
+  {{/dash-box}}
+  {{#dash-box service="github" status=project.githubStatus label=project.githubLabel href=project.githubHref}}
+  {{/dash-box}}
+</div>
+{{/each}}

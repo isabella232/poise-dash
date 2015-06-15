@@ -1,0 +1,130 @@
+@import "../../bower_components/bootstrap/less/bootstrap";
+@import "../../bower_components/font-awesome/less/font-awesome";
+
+@grid-columns: 14;
+
+body {
+  background-color: #F6F6F6;
+}
+
+a {
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+.navbar {
+  background-color: #000;
+  color: #FFF;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+}
+
+.logo {
+  font-size: 22px;
+}
+
+.headers {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.project {
+  height: 100px;
+  margin-bottom: 10px;
+  a { color: inherit; }
+}
+
+.project > * {
+  height: 100%;
+}
+
+.name-label, .name-details {
+  display: block;
+}
+
+.name-label, .status-label {
+  font-size: 24px;
+  line-height: 60px;
+}
+
+.name-label {
+  color: #000;
+}
+
+.name-details {
+  margin-top: -16px;
+  color: #777;
+  font-size: 12px;
+}
+
+.name-rev {
+  font-family: monospace;
+}
+
+.name-details .fa-clock-o {
+  margin-left: 10px;
+}
+
+.status-good, .status-bad, .status-nil {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  display: block;
+}
+
+.status-label, .status-graph {
+  display: block;
+}
+
+.status-graph {
+  bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 25px;
+  width: 60px;
+
+  @media only screen and (max-width: @container-md) {
+    display: none;
+  }
+}
+
+.project-travis .status-graph {
+  width: 58px;
+}
+
+.status-good {
+  background-color: #B3FFC3;
+}
+
+.status-bad {
+  background-color: #FFB3B3;
+}
+
+.status-nil {
+  background-color: #B3B3B3;
+}
+
+.graph-line, .project-travis .graph-nil {
+  fill: #979797;
+}
+
+.graph-good {
+  fill: #0A0;
+}
+
+.graph-bad {
+  fill: #E00;
+}
+
+.graph-nil {
+  fill: #FFEE00;
+}
+
+.project-codecov {
+  path {
+    stroke-width: 2;
+    fill: none;
+  }
+}

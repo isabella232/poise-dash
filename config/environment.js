@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'poise-dash-ember',
+    modulePrefix: 'poise-dash',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
