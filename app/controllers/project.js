@@ -11,12 +11,13 @@ var travisStatus = function(state) {
 };
 
 export default Ember.Controller.extend({
+  id: Ember.computed.alias('model.id'),
   name: function() {
-    return this.get('model.id').split(/\//).get('lastObject');
-  }.property('model.id'),
+    return this.get('id').split(/\//).get('lastObject');
+  }.property('id'),
   href: function() {
-    return 'https://github.com/' + this.get('model.id');
-  }.property('model.id'),
+    return 'https://github.com/' + this.get('id');
+  }.property('id'),
 
   commit: Ember.computed.alias('model.github.branch.commit.sha'),
   commitShort: function() {
@@ -26,8 +27,8 @@ export default Ember.Controller.extend({
     return moment(this.get('model.github.branch.commit.commit.committer.date')).fromNow();
   }.property('model.github.branch.commit.commit.committer.date'),
   commitHref: function() {
-    return 'https://github.com/' + this.get('model.id') + '/commit/' + this.get('commit');
-  }.property('model.id', 'commit'),
+    return 'https://github.com/' + this.get('id') + '/commit/' + this.get('commit');
+  }.property('id', 'commit'),
 
   travisLabel: function() {
     var n = this.get('model.travis.firstObject.number');
@@ -37,8 +38,8 @@ export default Ember.Controller.extend({
     return travisStatus(this.get('model.travis.firstObject.state'));
   }.property('model.travis.firstObject.state'),
   travisHref: function() {
-    return 'https://travis-ci.org/' + this.get('model.id') + '/builds/' + this.get('model.travis.firstObject.id');
-  }.property('model.id', 'model.travis.firstObject.id'),
+    return 'https://travis-ci.org/' + this.get('id') + '/builds/' + this.get('model.travis.firstObject.id');
+  }.property('id', 'model.travis.firstObject.id'),
   travisData: function() {
     return this.get('model.travis').slice(-10).map(function(build) {
       return travisStatus(build.state);
@@ -54,8 +55,8 @@ export default Ember.Controller.extend({
     return perc ? perc < 80 ? 'bad' : 'good' : 'nil';
   }.property('model.codecov.report.coverage'),
   codecovHref: function() {
-    return 'https://codecov.io/github/' + this.get('model.id');
-  }.property('model.id'),
+    return 'https://codecov.io/github/' + this.get('id');
+  }.property('id'),
 
   codeclimateLabel: function() {
     return this.get('model.codeclimate.gpa');
@@ -65,8 +66,8 @@ export default Ember.Controller.extend({
     return gpa ? parseFloat(gpa) <= 3 ? 'bad' : 'good' : 'nil';
   }.property('model.codeclimate.gpa'),
   codeclimateHref: function() {
-    return 'https://codeclimate.com/github/' + this.get('model.id');
-  }.property('model.id'),
+    return 'https://codeclimate.com/github/' + this.get('id');
+  }.property('id'),
   codeclimateData: function() {
     var donut = this.get('model.codeclimate.donut');
     return [
@@ -96,8 +97,8 @@ export default Ember.Controller.extend({
     return this.get('model.gemnasium') ? ( this.get('gemnasiumOutdated') === 0 ? 'good' : 'bad' ) : 'nil';
   }.property('model.gemnasium', 'gemnasiumOutdated'),
   gemnasiumHref: function() {
-    return 'https://gemnasium.com/' + this.get('model.id');
-  }.property('model.id'),
+    return 'https://gemnasium.com/' + this.get('id');
+  }.property('id'),
   gemnasiumData: function() {
     return [
       this.get('gemnasiumCounts.red'),
@@ -119,6 +120,6 @@ export default Ember.Controller.extend({
     return this.get('githubOpenCount') >= 10 ? 'bad' : 'good';
   }.property('githubOpenCount'),
   githubHref: function() {
-    return 'https://github.com/' + this.get('model.id') + '/issues?q=is%3Aopen';
-  }.property('model.id')
+    return 'https://github.com/' + this.get('id') + '/issues?q=is%3Aopen';
+  }.property('id')
 });
