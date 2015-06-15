@@ -14,5 +14,10 @@ export default Ember.Route.extend({
         return value;
       });
     }, null);
+  },
+  actions: {
+    refresh: function() {
+      this.refresh();
+    }
   }
 });

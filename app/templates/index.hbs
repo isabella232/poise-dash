@@ -6,7 +6,7 @@
   <div class="header-gemnasium col-md-2">Dependencies</div>
   <div class="header-gemnasium col-md-2">GitHub</div>
 </div>
-{{#each controller as |project|}}
+{{#each filteredProjects key="id" as |project|}}
 <div class="project row">
   <div class="project-name col-md-4">
     <a href={{project.href}} target="_blank">
