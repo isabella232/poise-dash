@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
     return 'https://travis-ci.org/' + this.get('id') + '/builds/' + this.get('model.travis.firstObject.id');
   }.property('id', 'model.travis.firstObject.id'),
   travisData: function() {
-    return this.get('model.travis').slice(-10).map(function(build) {
+    return this.get('model.travis').reverse().slice(-10).map(function(build) {
       return travisStatus(build.state);
     });
   }.property('model.travis.@each.state'),
