@@ -99,6 +99,9 @@ export default Ember.Controller.extend({
   gemnasiumHref: function() {
     return 'https://gemnasium.com/' + this.get('id');
   }.property('id'),
+  gemnasiumShowGraph: function() {
+    return this.get('model.gemnasium') && this.get('gemnasiumOutdated') != 0;
+  }.property('model.gemnasium', 'gemnasiumOutdated'),
   gemnasiumData: function() {
     return [
       this.get('gemnasiumCounts.red'),

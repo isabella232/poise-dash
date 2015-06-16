@@ -37,7 +37,7 @@
     {{/if}}
   {{/dash-box}}
   {{#dash-box service="gemnasium" status=project.gemnasiumStatus label=project.gemnasiumLabel href=project.gemnasiumHref}}
-    {{#if project.model.gemnasium}}
+    {{#if project.gemnasiumShowGraph }}
       {{graph-bar data=project.gemnasiumData}}
     {{/if}}
   {{/dash-box}}
