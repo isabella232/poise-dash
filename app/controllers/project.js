@@ -91,7 +91,7 @@ export default Ember.Controller.extend({
     return this.get('gemnasiumCounts.yellow') + this.get('gemnasiumCounts.red');
   }.property('gemnasiumCounts.yellow', 'gemnasiumCounts.red'),
   gemnasiumLabel: function() {
-    return this.get('model.gemnasium') ? this.get('gemnasiumOutdated') || Ember.String.htmlSafe('<i class="fa fa-check"></i>') : '';
+    return this.get('model.gemnasium') ? this.get('gemnasiumOutdated') || Ember.String.htmlSafe('<i class="fa fa-check" title="All dependencies up to date."></i>') : '';
   }.property('model.gemnasium', 'gemnasiumOutdated'),
   gemnasiumStatus: function() {
     return this.get('model.gemnasium') ? ( this.get('gemnasiumOutdated') === 0 ? 'good' : 'bad' ) : 'nil';
