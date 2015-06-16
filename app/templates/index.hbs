@@ -29,7 +29,9 @@
     {{/if}}
   {{/dash-box}}
   {{#dash-box service="codecov" status=project.codecovStatus label=project.codecovLabel href=project.codecovHref}}
-    {{!-- {{graph-sparkline data=project.codecov}} --}}
+    {{#if project.codecovShowGraph}}
+      {{graph-sparkline data=project.codecovData}}
+    {{/if}}
   {{/dash-box}}
   {{#dash-box service="codeclimate" status=project.codeclimateStatus label=project.codeclimateLabel href=project.codeclimateHref}}
     {{#if project.model.codeclimate}}

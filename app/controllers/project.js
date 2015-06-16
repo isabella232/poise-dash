@@ -46,17 +46,28 @@ export default Ember.Controller.extend({
     });
   }.property('model.travis.@each.state'),
 
+  codecovCoverage: Ember.computed.alias('model.codecov.sparkline.firstObject.coverage'),
   codecovLabel: function() {
-    var perc = this.get('model.codecov.report.coverage');
+    var perc = this.get('codecovCoverage');
     return perc ? Math.floor(perc) + '%' : '';
-  }.property('model.codecov.report.coverage'),
+  }.property('codecovCoverage'),
   codecovStatus: function() {
-    var perc = this.get('model.codecov.report.coverage');
-    return perc ? perc < 80 ? 'bad' : 'good' : 'nil';
-  }.property('model.codecov.report.coverage'),
+    var perc = this.get('codecovCoverage');
+    return perc ? perc < 90 ? 'bad' : 'good' : 'nil';
+  }.property('codecovCoverage'),
   codecovHref: function() {
     return 'https://codecov.io/github/' + this.get('id');
   }.property('id'),
+  codecovShowGraph: function() {
+    return this.get('model.codecov.sparkline') && !this.get('model.codecov.sparkline').every(function(build) {
+      return build.coverage === 0;
+    });
+  }.property('model.codecov.sparkline', 'model.codecov.sparkline.@each.coverage'),
+  codecovData: function() {
+    return this.get('model.codecov.sparkline').map(function(build) {
+      return build.coverage;
+    }).reverse();
+  }.property('model.codecov.sparkline.@each.coverage'),
 
   codeclimateLabel: function() {
     return this.get('model.codeclimate.gpa');
