@@ -34,7 +34,7 @@ export default Ember.Component.extend({
     var gradientId = 'sparkline-gradient-' + this.get('elementId');
 
     // Clear existing elements.
-    graph.selectAll("svg:g,svg:defs").remove();
+    graph.selectAll('g,defs').remove();
 
     graph
       .append("svg:g")
